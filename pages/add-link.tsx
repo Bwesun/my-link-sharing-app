@@ -6,7 +6,7 @@ const AddLink = () => {
   const [url, setUrl] = useState("");
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+    // e.preventDefault();
     await addLink({ title, url });
   };
 
