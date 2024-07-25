@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useAuth } from "../context/authContext";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { useState } from 'react';
+import { useAuth } from '../context/authContext';
+import { useRouter } from 'next/router';
 
-const Signup = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const SignUp = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const { user } = useAuth();
+  const { signUp, user } = useAuth();
+  const router = useRouter();
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert('Signup Successful');
+      await signUp(email, password);
+      router.push("/dashboard"); // Redirect to dashboard or another page after signup
     } catch (error: any) {
       setError(error.message);
     }
@@ -27,7 +27,7 @@ const Signup = () => {
   return (
     <div className="container mx-auto px-4">
       <h2 className="text-2xl mb-4">Sign Up</h2>
-      <form onSubmit={handleSignup}>
+      <form onSubmit={handleSignUp}>
         <div className="mb-4">
           <label className="block mb-1">Email:</label>
           <input
@@ -57,4 +57,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignUp;

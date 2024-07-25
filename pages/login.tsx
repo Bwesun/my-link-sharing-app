@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
+import { useRouter } from 'next/router';
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { login, user } = useAuth();
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     try {
       await login(email, password);
+      router.push("/dashboard"); // Redirect to dashboard or another page after signup
     } catch (error: any) {
       setError(error.message);
     }
