@@ -3,6 +3,7 @@ import { db } from '../firebase'; // Assuming you've configured Firebase Firesto
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../context/authContext';
 import Signup from './signup';
+import Login from './login';
 
 interface Link {
   id: string;
@@ -23,7 +24,7 @@ const Home = () => {
         ...doc.data(),
       })) as Link[];
       setLinks(linksList);
-      console.log(linksCollection);
+      // console.log(linksCollection);
     };
 
     fetchLinks();
@@ -31,7 +32,10 @@ const Home = () => {
 
   if (!user) {
     return (
-      <Signup />
+      <>
+        <Login />
+        <Signup />
+      </>
     ) ;
   }
 
