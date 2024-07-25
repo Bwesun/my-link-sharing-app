@@ -10,7 +10,7 @@ const Dashboard = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      router.push("/login"); // Redirect to login page after logout
+      router.push("/"); // Redirect to login page after logout
     } catch (error) {
       console.error("Logout error:", error);
     }
