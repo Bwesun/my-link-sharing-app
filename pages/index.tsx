@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../context/authContext';
 import Signup from './signup';
 import Login from './login';
+import AddLink from './add-link';
 
 interface Link {
   id: string;
@@ -51,6 +52,7 @@ const Home = () => {
           </li>
         ))}
       </ul>
+      <AddLink />
     </div>
   );
 };

@@ -19,20 +19,9 @@ const Login = () => {
       setError(error.message);
     }
   };
-  
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    try {
-      await login(email, password);
-      router.push("/signup"); // Redirect to dashboard or another page after signup
-    } catch (error: any) {
-      setError(error.message);
-    }
-  };
 
   if (user) {
-    return <p>You are already logged in.</p>;
+    router.push("/dashboard"); // Redirect to dashboard or another page after signup</p>;
   }
 
   return (
